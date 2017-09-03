@@ -38,9 +38,9 @@ function returnArgumentsArray() {
     var argArray = [];
     
     for (var i = 0; i < arguments.length; i++) {        
-        argArray = arguments[i];        
+        argArray[i] = arguments[i];        
     }    
-    console.log(argArray);
+    // console.log(argArray);
 
     return argArray;
 }
@@ -70,14 +70,13 @@ function returnCounter(number) {
         number = 0;
     }
 
-    var f = function () {
+    var numberCounter = function () {
         number++;
     }
-    console.log(f);
-
-    return number += 1;
+    
+    return numberCounter;
 }
-returnCounter();
+returnCounter(7);
 /*
  Задание 6 *:
 
@@ -87,11 +86,11 @@ returnCounter();
 function bindFunction(fn) {
 }
 
-// export {
-//     returnFirstArgument,
-//     defaultParameterValue,
-//     returnArgumentsArray,
-//     returnFnResult,
-//     returnCounter,
-//     bindFunction
-// }
+export {
+    returnFirstArgument,
+    defaultParameterValue,
+    returnArgumentsArray,
+    returnFnResult,
+    returnCounter,
+    bindFunction
+}
