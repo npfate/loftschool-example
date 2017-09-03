@@ -17,10 +17,7 @@ returnFirstArgument(188);
  Функция должна принимать два аргумента и возвращать сумму переданных значений
  Значение по умолчанию второго аргумента должно быть 100
  */
-function defaultParameterValue(a, b) {
-    if (b === undefined) {
-        b = 100;
-    }
+function defaultParameterValue(a, b = 100) {
     var res = a + b;
     // console.log(res);
 
@@ -65,11 +62,7 @@ returnFnResult(function () {
  Функция должна принимать число (значение по умолчанию - 0) и возвращать функцию (F)
  При вызове F, переданное число должно быть увеличено на единицу и возвращено из F
  */
-function returnCounter(number) {
-    if (number === undefined) {
-        number = 0;
-    }
-
+function returnCounter(number = 0) {
     var numberCounter = function () {
         return ++number;
     }
@@ -84,7 +77,11 @@ returnCounter(2);
  Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
  Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
  */
-function bindFunction(fn) {
+function bindFunction(fn, ...args) {
+    fn = fn.bind(this, ...args);
+    // console.log(fn);
+
+    return fn;
 }
 
 export {
