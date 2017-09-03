@@ -82,11 +82,11 @@ returnCounter();
 function bindFunction(fn) {
 }
 
-// export {
-//     returnFirstArgument,
-//     defaultParameterValue,
-//     returnArgumentsArray,
-//     returnFnResult,
-//     returnCounter,
-//     bindFunction
-// }
+export {
+    returnFirstArgument,
+    defaultParameterValue,
+    returnArgumentsArray,
+    returnFnResult,
+    returnCounter,
+    bindFunction
+}
