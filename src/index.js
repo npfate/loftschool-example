@@ -35,11 +35,14 @@ defaultParameterValue(5, 15);
  Количество переданных аргументов заранее неизвестно
  */
 function returnArgumentsArray() {
-    for (var i = 0; i < arguments.length; i++) {
-        // console.log(arguments[i]);
-
-        return arguments[i];
+    var argArray = [];
+    
+    for (var i = 0; i < arguments.length; i++) {        
+        argArray = arguments[i];        
     }    
+    console.log(argArray);
+
+    return argArray;
 }
 returnArgumentsArray(5, 10, 50);
 
@@ -49,11 +52,11 @@ returnArgumentsArray(5, 10, 50);
  Функция должна принимать другую функцию и возвращать результат вызова переданной функции
  */
 function returnFnResult(fn) {
-    fn();
+    return fn ();
 }
 
 returnFnResult(function () {
-    // console.log('Привет');
+    // console.log('привет');
 });
 
 /*
@@ -65,12 +68,14 @@ returnFnResult(function () {
 function returnCounter(number) {
     if (number === undefined) {
         number = 0;
-    }    
-    var result = number += 1;
+    }
 
-    // console.log(result);
+    var f = function () {
+        number++;
+    }
+    console.log(f);
 
-    return result;
+    return number += 1;
 }
 returnCounter();
 /*
@@ -82,11 +87,11 @@ returnCounter();
 function bindFunction(fn) {
 }
 
-export {
-    returnFirstArgument,
-    defaultParameterValue,
-    returnArgumentsArray,
-    returnFnResult,
-    returnCounter,
-    bindFunction
-}
+// export {
+//     returnFirstArgument,
+//     defaultParameterValue,
+//     returnArgumentsArray,
+//     returnFnResult,
+//     returnCounter,
+//     bindFunction
+// }
