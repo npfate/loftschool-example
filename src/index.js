@@ -71,12 +71,13 @@ function returnCounter(number) {
     }
 
     var numberCounter = function () {
-        number++;
+        return ++number;
     }
-    
+    // console.log(numberCounter());
+
     return numberCounter;
 }
-returnCounter(7);
+returnCounter(2);
 /*
  Задание 6 *:
 
