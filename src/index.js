@@ -1,114 +1,99 @@
-import { assert } from 'chai';
-import { randomValue as random, randomStringArray } from '../helper';
-import {
-    bindFunction,
+/* ДЗ 1 - Функции */
+
+/*
+ Задание 1:
+
+ Функция должна принимать один аргумент и возвращать его
+ */
+function returnFirstArgument(arg) {
+    // console.log(arg);
+    return arg;
+}
+returnFirstArgument(188);
+
+/*
+ Задание 2:
+
+ Функция должна принимать два аргумента и возвращать сумму переданных значений
+ Значение по умолчанию второго аргумента должно быть 100
+ */
+function defaultParameterValue(a, b = 100) {
+    var res = a + b;
+    // console.log(res);
+
+    return res;
+}
+defaultParameterValue(5, 15);
+
+/*
+ Задание 3:
+
+ Функция должна возвращать все переданные в нее аргументы в виде массива
+ Количество переданных аргументов заранее неизвестно
+ */
+function returnArgumentsArray() {
+    var argArray = [];
+    
+    for (var i = 0; i < arguments.length; i++) {        
+        argArray[i] = arguments[i];        
+    }    
+    // console.log(argArray);
+
+    return argArray;
+}
+returnArgumentsArray(5, 10, 50);
+
+/*
+ Задание 4:
+
+ Функция должна принимать другую функцию и возвращать результат вызова переданной функции
+ */
+function returnFnResult(fn) {
+    return fn ();
+}
+
+returnFnResult(function () {
+    // console.log('привет');
+});
+
+/*
+ Задание 5:
+
+ Функция должна принимать число (значение по умолчанию - 0) и возвращать функцию (F)
+ При вызове F, переданное число должно быть увеличено на единицу и возвращено из F
+ */
+function returnCounter(number = 0) {
+    var numberCounter = function () {
+        return ++number;
+    }
+    // console.log(numberCounter());
+
+    return numberCounter;
+}
+returnCounter(5);
+/*
+ Задание 6 *:
+
+ Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
+ Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
+ */
+// var fn = function() {
+//     return true;
+// }
+
+function bindFunction(fn, ...args) {  
+    fn = fn.bind(this, ...args);    
+    console.log(fn);
+    
+    return fn;
+}
+// bindFunction(fn);
+
+export {
+    returnFirstArgument,
     defaultParameterValue,
     returnArgumentsArray,
+    returnFnResult,
     returnCounter,
-    returnFirstArgument,
-    returnFnResult
-} from '../src/index';
-
-describe('ДЗ 1 - функции', () => {
-    describe('returnFirstArgument', () => {
-        it('должна возвращать переданный аргумент', () => {
-            let value = random();
-            let result = returnFirstArgument(value);
-
-            assert.strictEqual(result, value);
-        });
-    });
-
-    describe('defaultParameterValue', () => {
-        it('должна возвращать сумму переданных аргументов', () => {
-            let valueA = random('number');
-            let valueB = random('number');
-            let result = defaultParameterValue(valueA, valueB);
-
-            assert.strictEqual(result, valueA + valueB);
-        });
-
-        it('значение по умолчанию второго аргумента должно быть 100', () => {
-            let value = random('number');
-            let result = defaultParameterValue(value);
-
-            assert.strictEqual(result, value + 100);
-        });
-    });
-
-    describe('returnArgumentsArray', () => {
-        it('должна возвращать переданные аргументы в виде массива', () => {
-            let result;
-            let value;
-
-            value = random('array', 1);
-            result = returnArgumentsArray(...value);
-            assert.deepEqual(result, value);
-        });
-
-        it('должна возвращать пустой массив если нет аргументов', () => {
-            let result = returnArgumentsArray();
-
-            assert.deepEqual(result, []);
-        });
-    });
-
-    describe('returnFnResult', () => {
-        it('должна возвращать результат вызова переданной функции', () => {
-            function fn() {
-                return value;
-            }
-
-            let value = random();
-            let result = returnFnResult(fn);
-
-            assert.strictEqual(result, value);
-        });
-    });
-
-    describe('returnCounter', () => {
-        it('должна возвращать функцию', () => {
-            let result = returnCounter();
-
-            assert.typeOf(result, 'function');
-        });
-
-        it('возвращаемая функция должна увеличивать переданное число на единицу при каждом вызове', () => {
-            let value = random('number');
-            let result = returnCounter(value);
-
-            assert.equal(result(), value + 1);
-            assert.equal(result(), value + 2);
-            assert.equal(result(), value + 3);
-        });
-
-        it('значение аргумента должно быть 0 по умолчанию', () => {
-            let result = returnCounter();
-
-            assert.equal(result(), 1);
-            assert.equal(result(), 2);
-            assert.equal(result(), 3);
-        });
-    });
-
-    describe('bindFunction', () => {
-        let valuesArr = randomStringArray();
-
-        function fn(...valuesArr) {
-            return [...arguments].join('');
-        }
-
-        it('должна возвращать функцию', () => {
-            let result = bindFunction(fn);
-
-            assert.typeOf(result, 'function');
-        });
-
-        it('должна привязывать любое кол-во аргументов возвращаемой функции', () => {
-
-            let result = bindFunction(fn, ...valuesArr);
-
-            assert.equal(result(), valuesArr.join(''));
-        });
-    });
-});
+    bindFunction
+}
